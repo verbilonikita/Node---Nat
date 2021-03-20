@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "prod": "NODE_ENV=production nodemon server.js ",
-    "debug": "ndb server.js"
+    "debug": "ndb server.js",
+    "webpack": "webpack --config webpack.config.js"
   },
   "engines": {
     "node": ">=10"
@@ -14,7 +15,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -40,5 +43,13 @@
     "slugify": "^1.4.7",
     "validator": "^13.5.2",
     "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.27.0",
+    "webpack-cli": "^4.5.0"
   }
 }

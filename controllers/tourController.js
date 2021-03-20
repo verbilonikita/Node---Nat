@@ -15,11 +15,7 @@ exports.alliasTopTours = (req, res, next) => {
 };
 
 exports.getAllTours = catchAsync(async (req, res) => {
-  const features = new APIfeatures(Tour.find(), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
+  const features = new APIfeatures(Tour.find(), req.query).filter().sort().limitFields().paginate();
   const tour = await features.query;
 
   res.status(200).json({

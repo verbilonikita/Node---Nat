@@ -15,17 +15,23 @@ const handleJWTExpiredError = () => {
   return new AppError(message, 401);
 };
 
-const sendErrorDev = (err, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    error: err,
-    message: err.message,
-    stack: err.stack,
-  });
+const sendErrorDev = (err, req, res) => {
+  if (req.url.startsWith("/api")) {
+    res.status(err.statusCode).json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack,
+    });
+  } else {
+    res.status(err.statusCode).render("_error", {
+      title: "Something went wrong!",
+      msg: err.message,
+    });
+  }
 };
 
-const handleJWTError = () =>
-  new AppError("Invalid token. Please login again!", 401);
+const handleJWTError = () => new AppError("Invalid token. Please login again!", 401);
 
 const sendErrorProd = (err, res) => {
   // send message to client
@@ -50,7 +56,7 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || "error";
 
   if (process.env.NODE_ENV === "development") {
-    sendErrorDev(err, res);
+    sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === "production") {
     let error = { ...err };
     if (error.name === "CastError") error = handleCastErrorDB(error);
@@ -58,6 +64,6 @@ module.exports = (err, req, res, next) => {
     if (error.name === "JsonWebTokenError") error = handleJWTError();
     if (error.name === "TokenExpiredError") error = handleJWTExpiredError();
 
-    sendErrorProd(error, res);
+    sendErrorProd(error, req, res);
   }
 };
