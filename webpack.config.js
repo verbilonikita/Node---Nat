@@ -8,6 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, "public/js"),
   },
   watch: true,
+  optimization: {
+    minimize: true,
+  },
   module: {
     rules: [
       {

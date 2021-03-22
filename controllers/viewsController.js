@@ -34,6 +34,7 @@ exports.login = catchAsync(async (req, res) => {
 
 exports.getAccount = catchAsync(async (req, res) => {
   res.status(200).render("_account", {
+    title: "Your account",
     status: "success",
   });
 });

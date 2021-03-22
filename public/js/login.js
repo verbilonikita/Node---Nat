@@ -15,7 +15,7 @@ export const login = async (email, password) => {
       });
     }
   } catch (err) {
-    alert(err.response.data.message);
+    showAlerts("error", err.response.data.message);
   }
 };
 
