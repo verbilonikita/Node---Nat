@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 
 //View Engine
 app.set("view engine", "pug");
@@ -76,6 +77,9 @@ app.use(xss());
 //     ],
 //   })
 // );
+
+//compresses text
+app.use(compression());
 
 //To be able manipulate with json from req.body
 app.use(express.json({ limit: "10kb" }));
