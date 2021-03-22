@@ -9,4 +9,4 @@
 
 Still in progress.
 
-https://nattttt.herokuapp.com/me
+https://nattttt.herokuapp.com/login
