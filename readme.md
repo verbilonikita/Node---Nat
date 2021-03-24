@@ -1,5 +1,8 @@
 # An App to purchase travel tours
 
+Used:
+## Express, mongoose, cookieparser, compression, jwt, bcrypt, crypto, pug and other
+
 1. Has lots of different routes for post/patch/get/delete etc.
 2. Has 3 Model Schemas for Mongoose.
 3. Verification, authorization, email confirmation etc.
